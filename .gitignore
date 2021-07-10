@@ -1,0 +1,7 @@
+# Project exclude paths
+/jclExercise/target/
+/julExercise/target/
+/log4j2Exercise/target/
+/log4jExercise/target/
+/logBackExercise/target/
+/slf4jExercise/target/

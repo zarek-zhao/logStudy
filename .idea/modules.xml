@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jclExercise/jclExercise.iml" filepath="$PROJECT_DIR$/jclExercise/jclExercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/julExercise/julExercise.iml" filepath="$PROJECT_DIR$/julExercise/julExercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/log4j2Exercise/log4j2Exercise.iml" filepath="$PROJECT_DIR$/log4j2Exercise/log4j2Exercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/log4jExercise/log4jExercise.iml" filepath="$PROJECT_DIR$/log4jExercise/log4jExercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/logBackExercise/logBackExercise.iml" filepath="$PROJECT_DIR$/logBackExercise/logBackExercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/slf4jExercise/slf4jExercise.iml" filepath="$PROJECT_DIR$/slf4jExercise/slf4jExercise.iml" />
+    </modules>
+  </component>
+</project>

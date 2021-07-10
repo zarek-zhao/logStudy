@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+<!--
+        配置全局通用属性
+-->
+    <properties>
+        <property name="logDir">E://logTest//Log4j2Test</property>
+        <property name="pattern">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</property>
+    </properties>
+
+<!--    配置appender-->
+    <Appenders>
+<!--        配置控制台输出-->
+        <Console name="consoleAppender" target="SYSTEM_ERR">
+            <PatternLayout pattern="${pattern}"/>
+        </Console>
+
+<!--        配置文件输出-->
+        <File name="fileAppender" fileName="${logDir}//log4j2.log">
+<!--            配置文件输出的格式-->
+            <PatternLayout pattern="${pattern}" />
+        </File>
+
+<!--        按照指定规则来拆分日志文件
+            fileName：日志文件的名字
+            filePattern：日志文件拆分后文件的命名规则
+                        $${date:yyyy-MM-dd}：根据日期当天，创建一个文件夹
+                        例如： 2021-01-01 这个文件下中，记录当天的所有日志信息(拆分出来的日志放在这个文件夹中)
+            rollog-%d{yyyy-MM-dd-HH-mm-ss}-%i.log
+                        为文件命名的规则：%i表示序号，从0开始，目的是为了让每一份文件名字不会重复
+-->
+        <RollingFile name="rollingFileAppender" fileName="${logDir}/rollog.log"
+                        filePattern="${logDir}/$${date:yyyy-MM-dd}/rollog-%d{yyyy-MM-dd-HH-mm-ss}-%i.log">
+<!--                日志消息格式-->
+            <PatternLayout pattern="${pattern}" />
+
+            <Policies>
+<!--                在系统启动时，触发拆分的规则，产生日志文件-->
+                <OnStartupTriggeringPolicy/>
+<!--                按照文件的大小进行拆分-->
+                <SizeBasedTriggeringPolicy size="10KB" />
+<!--                按照时间节点进行拆分，拆分规则就是filePattern-->
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+
+<!--            在统一目录下，文件的个数限制，如果超出了设置的数值，则根据时间进行覆盖，新的覆盖旧的-->
+            <DefaultRolloverStrategy max="30"/>
+
+        </RollingFile>
+
+<!--        配置异步日志-->
+        <Async name="myAsync">
+<!--            将控制台的输出做异步操作-->
+            <AppenderRef ref="consoleAppender"/>
+        </Async>
+
+    </Appenders>
+<!--    配置logger-->
+    <Loggers>
+<!--        配置RootLogger-->
+        <Root level="all">
+<!--            引入appender-->
+            <AppenderRef ref="consoleAppender"/>
+<!--            <AppenderRef ref="fileAppender"/>-->
+<!--            <AppenderRef ref="rollingFileAppender"/>-->
+<!--            <AppenderRef ref="myAsync"/>-->
+
+        </Root>
+
+<!--        配置自定义logger,让自定义的logger为异步logger-->
+<!--
+            includeLocation="false"
+            表示去除日志记录中的行号信息，行号信息非常的影响日志记录的效率(一般都不加)
+            严重的时候可以能记录的比同步的日志效率还要低
+            additivity="false"
+            表示不继承rootLogger
+-->
+        <AsyncLogger name="com.zarek" level="trace"
+                        includeLocation="false" additivity="false">
+<!--            引用控制台输出consoleAppender，设置为异步打印-->
+            <AppenderRef ref="consoleAppender" />
+        </AsyncLogger>
+
+    </Loggers>
+</Configuration>
