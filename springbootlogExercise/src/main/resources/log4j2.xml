@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+<!--
+        配置全局通用属性
+-->
+    <properties>
+        <property name="pattern">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</property>
+    </properties>
+
+<!--    配置appender-->
+    <Appenders>
+<!--        配置控制台输出-->
+        <Console name="consoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}"/>
+        </Console>
+
+<!--        按照指定规则来拆分日志文件
+            fileName：日志文件的名字
+            filePattern：日志文件拆分后文件的命名规则
+                        $${date:yyyy-MM-dd}：根据日期当天，创建一个文件夹
+                        例如： 2021-01-01 这个文件下中，记录当天的所有日志信息(拆分出来的日志放在这个文件夹中)
+            rollog-%d{yyyy-MM-dd-HH-mm-ss}-%i.log
+                        为文件命名的规则：%i表示序号，从0开始，目的是为了让每一份文件名字不会重复
+-->
+<!--        <RollingFile name="rollingFileAppender" fileName="${logDir}/rollog.log"-->
+<!--                        filePattern="${logDir}/$${date:yyyy-MM-dd}/rollog-%d{yyyy-MM-dd-HH-mm-ss}-%i.log">-->
+<!--&lt;!&ndash;                日志消息格式&ndash;&gt;-->
+<!--            <PatternLayout pattern="${pattern}" />-->
+
+<!--            <Policies>-->
+<!--&lt;!&ndash;                在系统启动时，触发拆分的规则，产生日志文件&ndash;&gt;-->
+<!--                <OnStartupTriggeringPolicy/>-->
+<!--&lt;!&ndash;                按照文件的大小进行拆分&ndash;&gt;-->
+<!--                <SizeBasedTriggeringPolicy size="10KB" />-->
+<!--&lt;!&ndash;                按照时间节点进行拆分，拆分规则就是filePattern&ndash;&gt;-->
+<!--                <TimeBasedTriggeringPolicy/>-->
+<!--            </Policies>-->
+
+<!--&lt;!&ndash;            在统一目录下，文件的个数限制，如果超出了设置的数值，则根据时间进行覆盖，新的覆盖旧的&ndash;&gt;-->
+<!--            <DefaultRolloverStrategy max="30"/>-->
+
+<!--        </RollingFile>-->
+
+    </Appenders>
+<!--    配置logger-->
+    <Loggers>
+<!--        配置RootLogger-->
+<!--        <Root level="all">-->
+<!--&lt;!&ndash;            引入appender&ndash;&gt;-->
+<!--            <AppenderRef ref="consoleAppender"/>-->
+<!--&lt;!&ndash;            <AppenderRef ref="fileAppender"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <AppenderRef ref="rollingFileAppender"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <AppenderRef ref="myAsync"/>&ndash;&gt;-->
+
+<!--        </Root>-->
+
+
+        <AsyncLogger name="com.zarek" level="trace"
+                        includeLocation="false" additivity="false">
+<!--            引用控制台输出consoleAppender，设置为异步打印-->
+            <AppenderRef ref="consoleAppender" />
+        </AsyncLogger>
+
+<!--        <logger name="com.zarek" level="trace"  additivity="false">-->
+<!--            <appender-ref ref="consoleAppender"/>-->
+<!--        </logger>-->
+
+    </Loggers>
+</Configuration>

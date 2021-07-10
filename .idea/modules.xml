@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/log4jExercise/log4jExercise.iml" filepath="$PROJECT_DIR$/log4jExercise/log4jExercise.iml" />
       <module fileurl="file://$PROJECT_DIR$/logBackExercise/logBackExercise.iml" filepath="$PROJECT_DIR$/logBackExercise/logBackExercise.iml" />
       <module fileurl="file://$PROJECT_DIR$/slf4jExercise/slf4jExercise.iml" filepath="$PROJECT_DIR$/slf4jExercise/slf4jExercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springbootlogExercise/springbootlogExercise.iml" filepath="$PROJECT_DIR$/springbootlogExercise/springbootlogExercise.iml" />
     </modules>
   </component>
 </project>

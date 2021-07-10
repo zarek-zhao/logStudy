@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/slf4jExercise/pom.xml" />
         <option value="$PROJECT_DIR$/logBackExercise/pom.xml" />
         <option value="$PROJECT_DIR$/log4j2Exercise/pom.xml" />
+        <option value="$PROJECT_DIR$/springbootlogExercise/pom.xml" />
       </list>
     </option>
   </component>

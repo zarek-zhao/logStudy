@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+
+    <property name="pattern" value="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %c %M %L %thread %m%n" />
+    <!--    配置文件的输出路径-->
+    <property name="logDir" value="E://logTest//SpringBootLogTest" />
+
+    <appender name="rollAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logDir}/roll_logback.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+        <!--    指定拆分的规则-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--            按照时间和压缩格式来声明文件名 压缩格式gz-->
+            <fileNamePattern>${logDir}/roll.%d{yyyy-MM-dd}.log%i.gz</fileNamePattern>
+            <!--            按照文件大小来进行拆分-->
+            <maxFileSize>1KB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <target>
+            System.err
+        </target>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="asyncAppender" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="consoleAppender" />
+    </appender>
+<!--    <root level="ALL">-->
+<!--&lt;!&ndash;        引入appender&ndash;&gt;-->
+<!--&lt;!&ndash;        <appender-ref ref="fileAppender" />&ndash;&gt;-->
+<!--&lt;!&ndash;        <appender-ref ref="consoleAppender" />&ndash;&gt;-->
+<!--&lt;!&ndash;        <appender-ref ref="consoleFilterAppender" />&ndash;&gt;-->
+<!--&lt;!&ndash;        <appender-ref ref="rollAppender" />&ndash;&gt;-->
+<!--&lt;!&ndash;        <appender-ref ref="htmlAppender" />&ndash;&gt;-->
+<!--        <appender-ref ref="asyncAppender" />-->
+
+<!--    </root>-->
+    <logger name="com.zarek" level="info" additivity="false">
+        <appender-ref ref="rollAppender" />
+    </logger>
+
+
+
+</configuration>

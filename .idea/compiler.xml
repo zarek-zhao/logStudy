@@ -8,9 +8,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="logBackExercise" />
         <module name="log4j2Exercise" />
-        <module name="jclExercise" />
         <module name="slf4jExercise" />
         <module name="julExercise" />
+        <module name="jclExercise" />
+        <module name="springbootlogExercise" />
         <module name="log4jExercise" />
       </profile>
     </annotationProcessing>
@@ -21,6 +22,12 @@
       <module name="log4jExercise" target="1.8" />
       <module name="logBackExercise" target="1.8" />
       <module name="slf4jExercise" target="1.8" />
+      <module name="springbootlogExercise" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springbootlogExercise" options="-parameters" />
+    </option>
   </component>
 </project>

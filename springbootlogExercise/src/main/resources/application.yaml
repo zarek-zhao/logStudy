@@ -1,0 +1,5 @@
+#logging.level.com.zarek=trace
+#logging.pattern.console=%d{yyyy-MM-dd} [%level] -%m%n
+#logging.file.path=E://logTest//SpringBootLogTest
+logging:
+  config: classpath:log4j2.xml
